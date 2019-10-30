@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelPlayerDetails()">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Register Player</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="primary" type="submit" [disabled]="playerForm.invalid" (click)="confirmPlayerDetails()">
+        <ion-icon size="large" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-img src="/assets/playerDefault.png" class="profileImg" routerLink="/take-picture"></ion-img>
+  
+  <form #playerForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Gamertag</ion-label>
+        <ion-input type="text" name="gamerTag" [(ngModel)]="player.gamerTag" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="player.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Lastname</ion-label>
+        <ion-input type="text" name="lastname" [(ngModel)]="player.lastName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Category</ion-label>
+        <ion-select okText="Okay" [(ngModel)]="player.category" name="categorias" cancelText="Dismiss">
+          <ion-select-option *ngFor="let item of categories; let i of index" value={{item}}>{{item}}</ion-select-option>
+          <ion-select-option value="">Ninguna</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+
+
+  </form>
+</ion-content>
+<!-- 
+  <ion-footer class="ion-padding" no-border>
+  <ion-button expand="full" type="submit" (click)="cancelPlayerDetails()">Cancel</ion-button>
+</ion-footer>
+ -->

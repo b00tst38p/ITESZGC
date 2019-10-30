@@ -1,0 +1,15 @@
+<ion-item class="child-item" text-wrap detail="false" lines="none">
+
+  <ion-label>
+    <h3>{{ product.name }}</h3>
+    <p color="medium">{{ product.equipo }}</p>
+  </ion-label>
+  <ion-label id="columna">{{product.estado}}</ion-label>
+  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='1'" color="success">
+    {{ product.estado }}</ion-icon>
+  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='2'" color="danger">
+    {{ product.estado }}</ion-icon>
+  <ion-icon name="add" slot="end" *ngIf="product.estado=='0'" (click)="setPosition()" color="primary">
+  </ion-icon>
+  
+</ion-item>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="main"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register Team</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-icon *ngIf="mode!=-1" name="trash" color="danger" size="large" (click)="deleteAlert()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="profileImg" src="/assets/teamDefault.png" routerLink="/take-picture"></ion-img>
+
+  <form #registerForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Team name</ion-label>
+      <ion-input type="text" name="teamName" [(ngModel)]="newTeam.teamName" required></ion-input>
+    </ion-item>
+
+    <ion-list-header>
+      <ion-label>Members</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let num of newTeam.members; let i = index; trackBy: trackByFn" (click)="getPlayerDetails(i)"
+      detail>
+      <ion-label *ngIf="newTeam.members[i].gamerTag==''">Member {{i+1}}</ion-label>
+      <ion-label *ngIf="newTeam.members[i].gamerTag!=''">{{num.gamerTag}}</ion-label>
+      <ion-label slot="end" *ngIf="newTeam.members[i].gamerTag!=''">{{num.category}}</ion-label>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer class="ion-padding" no-border>
+  <ion-button type="submit" [disabled]="registerForm.invalid" expand="full" (click)="submitRegister()">Confirm
+  </ion-button>
+</ion-footer>
