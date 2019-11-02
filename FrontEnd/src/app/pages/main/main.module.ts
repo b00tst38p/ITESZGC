@@ -5,29 +5,28 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TabsPage } from './tabs.page';
+import { MainPage } from './main.page';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'test'
+    redirectTo: 'team-list'
   },
   {
     path: '',
-    component: TabsPage,
+    component: MainPage,
     children: [
-      
       {
         path: 'team-list',
-        loadChildren: './pages/team-list/team-list.module#TeamListPageModule'
+        loadChildren: '../team-list/team-list.module#TeamListPageModule'
       },
       {
         path: 'test',
-        loadChildren: './pages/test/test.module#TestPageModule'
+        loadChildren: '../test/test.module#TestPageModule'
       },
       {
         path: 'partida',
-        loadChildren: './pages/partida/partida.module#PartidaPageModule'
+        loadChildren: '../partida/partida.module#PartidaPageModule'
       }
     ]
   }
@@ -40,6 +39,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TabsPage]
+  declarations: [MainPage]
 })
-export class TabsPageModule {}
+export class MainPageModule {}
