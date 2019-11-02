@@ -74,4 +74,54 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** gold **/
+  --ion-color-gold: #ccb148;
+  --ion-color-gold-rgb: 204,177,72;
+  --ion-color-gold-contrast: #000000;
+  --ion-color-gold-contrast-rgb: 0,0,0;
+  --ion-color-gold-shade: #b49c3f;
+  --ion-color-gold-tint: #d1b95a;
+
+  /** silver **/
+  --ion-color-silver: #989aa2;
+  --ion-color-silver-rgb: 152, 154, 162;
+  --ion-color-silver-contrast: #ffffff;
+  --ion-color-silver-contrast-rgb: 255, 255, 255;
+  --ion-color-silver-shade: #86888f;
+  --ion-color-silver-tint: #a2a4ab;
+
+  /** bronze **/
+  --ion-color-bronze: #b55a00;
+  --ion-color-bronze-rgb: 181,90,0;
+  --ion-color-bronze-contrast: #ffffff;
+  --ion-color-bronze-contrast-rgb: 255,255,255;
+  --ion-color-bronze-shade: #9f4f00;
+  --ion-color-bronze-tint: #bc6b1a;
+}
+.ion-color-gold {
+  --ion-color-base: var(--ion-color-gold) !important;
+  --ion-color-base-rgb: var(--ion-color-gold-rgb) !important;
+  --ion-color-contrast: var(--ion-color-gold-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-gold-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-gold-shade) !important;
+  --ion-color-tint: var(--ion-color-gold-tint) !important;
+}
+
+.ion-color-silver {
+  --ion-color-base: var(--ion-color-silver) !important;
+  --ion-color-base-rgb: var(--ion-color-silver-rgb) !important;
+  --ion-color-contrast: var(--ion-color-silver-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-silver-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-silver-shade) !important;
+  --ion-color-tint: var(--ion-color-silver-tint) !important;
+}
+
+.ion-color-bronze {
+  --ion-color-base: var(--ion-color-bronze) !important;
+  --ion-color-base-rgb: var(--ion-color-bronze-rgb) !important;
+  --ion-color-contrast: var(--ion-color-bronze-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-bronze-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-bronze-shade) !important;
+  --ion-color-tint: var(--ion-color-bronze-tint) !important;
 }

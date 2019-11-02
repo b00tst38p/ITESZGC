@@ -5,11 +5,13 @@
     <p color="medium">{{ product.equipo }}</p>
   </ion-label>
   <ion-label id="columna">{{product.estado}}</ion-label>
-  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='1'" color="success">
+  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='1'" color="gold">
     {{ product.estado }}</ion-icon>
-  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='2'" color="danger">
+  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='2'" color="silver">
+    {{ product.estado }}</ion-icon>
+  <ion-icon name="trophy" slot="end" *ngIf="product.estado=='3'" color="bronze">
     {{ product.estado }}</ion-icon>
   <ion-icon name="add" slot="end" *ngIf="product.estado=='0'" (click)="setPosition()" color="primary">
   </ion-icon>
-  
+
 </ion-item>
