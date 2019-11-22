@@ -124,7 +124,8 @@ export class DataServiceService {
       if (element.estado > last) {
         last = element.estado;
       }
-    }); return last;
+    }); 
+    return last;
 
   }
 }

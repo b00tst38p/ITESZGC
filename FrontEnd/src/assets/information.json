@@ -1,12 +1,12 @@
 {
-    "items":[
+    "items": [
         {
-            "name": "Partida 1",
+            "partida": "Partida 1",
             "tipo": "Simple",
             "position": "0",
             "children": [
                 {
-                    "name":"CarlosEspanda",
+                    "name": "CarlosEspanda",
                     "equipo": "Equipo: El malos chistes",
                     "estado": "0"
                 },
@@ -28,13 +28,40 @@
             ]
         },
         {
-            "name": "Partida 2",
+            "partida": "Partida 2",
+            "tipo": "Simple",
+            "position": "0",
+            "children": [
+                {
+                    "name": "CarlosEspanda",
+                    "equipo": "Equipo: El malos chistes",
+                    "estado": "0"
+                },
+                {
+                    "name": "LoziferSatanius",
+                    "equipo": "Equipo: Dinamitas",
+                    "estado": "0"
+                },
+                {
+                    "name": "Vicky",
+                    "equipo": "Equipo: Vicky's World",
+                    "estado": "0"
+                },
+                {
+                    "name": "Anton10GG",
+                    "equipo": "Equipo: Los Sinceros",
+                    "estado": "0"
+                }
+            ]
+        },
+        {
+            "partida": "Partida 3",
             "tipo": "Match",
             "children": [
                 {
-                    "name":"Match 1",
+                    "name": "Match 1",
                     "posicion": "0",
-                    "children": [
+                    "jugadores": [
                         {
                             "name": "JosepMad",
                             "equipo": "Equipo: Los mentirosos",
@@ -43,15 +70,14 @@
                         {
                             "name": "AdrianInBlack",
                             "equipo": "Equipo: Los shaggys",
-                            "estado": "0" 
+                            "estado": "0"
                         }
                     ]
- 
                 },
                 {
-                    "name":"Match 2",
+                    "name": "Match 2",
                     "posicion": "0",
-                    "children": [
+                    "jugadores": [
                         {
                             "name": "VictoCreed",
                             "equipo": "Equipo: Barrio Pesao",
@@ -60,14 +86,11 @@
                         {
                             "name": "Meow",
                             "equipo": "Equipo: The meows",
-                            "estado": "0" 
+                            "estado": "0"
                         }
                     ]
- 
                 }
-
-                
-            ] 
+            ]
         }
     ]
 }

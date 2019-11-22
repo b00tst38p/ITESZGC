@@ -7,7 +7,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./jugador.component.scss'],
 })
 export class JugadorComponent implements OnInit {
-  @Input('product') product: any;
+  @Input('player') player: any;
   @Input('partida') partida: any;
   @Input('match') match: number;
   
@@ -33,18 +33,18 @@ export class JugadorComponent implements OnInit {
     //Revisamos de entre las partidas, aquella en la que se encuentra este jugador
     if(this.dataService.information[this.dataService.information[0].position].tipo == "Simple") {
       console.log("Primer Caso");
-      this.product.estado = this.dataService.posicion+1;
+      this.player.estado = this.dataService.posicion+1;
       this.dataService.posicion++;
     }
     else if(this.dataService.information[this.dataService.information[0].position].tipo == "Match"){
       console.log("Segundo Caso");
         
         this.dataService.posicion=0;
-        this.product.estado = this.dataService.posicion+1;
+        this.player.estado = this.dataService.posicion+1;
         this.dataService.information[1].children[1].estado="2";
     }
     console.log(this.dataService.information[0].children[0]);
-   // this.product.estado = this.dataService.posicion+1;
+   // this.player.estado = this.dataService.posicion+1;
    // this.dataService.posicion++;
   }
 
