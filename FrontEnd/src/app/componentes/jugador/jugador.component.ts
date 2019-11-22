@@ -12,15 +12,11 @@ export class JugadorComponent implements OnInit {
   @Input('match') match: number;
   
   private buttonColor: string = "primary";
-  cont: number = 0;
-
-  variable: number = 0;
-  constructor(private dataService: DataServiceService) {
-
-  }
+  
+  constructor(private dataService: DataServiceService) { }
 
   ngOnInit() {
-    console.log("datos " + this.partida + this.match);
+    //console.log("datos " + this.partida + this.match);
   }
 
   setWinner(player) {
@@ -30,22 +26,13 @@ export class JugadorComponent implements OnInit {
   }
 
   setPosition(){
-    //Revisamos de entre las partidas, aquella en la que se encuentra este jugador
-    if(this.dataService.information[this.dataService.information[0].position].tipo == "Simple") {
-      console.log("Primer Caso");
-      this.player.estado = this.dataService.posicion+1;
-      this.dataService.posicion++;
+    if(this.dataService.information[this.partida].tipo == "Simple"){
+      this.player.position = this.dataService.information[this.partida].lastPosition+1;
+      this.dataService.information[this.partida].lastPosition++;
     }
-    else if(this.dataService.information[this.dataService.information[0].position].tipo == "Match"){
-      console.log("Segundo Caso");
-        
-        this.dataService.posicion=0;
-        this.player.estado = this.dataService.posicion+1;
-        this.dataService.information[1].children[1].estado="2";
+    else if(this.dataService.information[this.partida].tipo == "Match"){
+      this.player.position = this.dataService.information[this.partida].children[this.match].lastPosition+1;
+      this.dataService.information[this.partida].children[this.match].lastPosition++;
     }
-    console.log(this.dataService.information[0].children[0]);
-   // this.player.estado = this.dataService.posicion+1;
-   // this.dataService.posicion++;
   }
-
 }

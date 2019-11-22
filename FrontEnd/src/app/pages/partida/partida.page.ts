@@ -50,19 +50,17 @@ export class PartidaPage implements OnInit {
   }
 
   reset(match, partida) {
-    //console.log("partida " + + partida + " " +this.dataService.information[partida].tipo)
-    this.dataService.posicion = 0;
     if(this.dataService.information[partida].tipo == "Simple") {
+      this.dataService.information[partida].lastPosition = 0;
       this.dataService.information[partida].children.forEach(element => {
-        element.estado = "0"
+        element.position = "0"
       });
     }
     else if(this.dataService.information[partida].tipo == "Match"){
       this.dataService.information[partida].children.forEach(element => {
-        //console.log(element.name);
-        element.children.forEach(element2 => {
-          //console.log(element2.name);
-          element2.estado = "0"
+        element.lastPosition = 0;
+        element.jugadores.forEach(element2 => {
+          element2.position = "0"
         });
       });
     }
