@@ -10,8 +10,9 @@ import { Storage } from "@ionic/storage";
 export class DataServiceService {
 
   information: any[];
+  ranking: any;
   categoria: number;
-  posicion: number=0;
+  posicion: number = 0;
 
   //npm install @ionic-native/native-storage
   //ionic cordova plugin add cordova-sqlite-storage
@@ -26,35 +27,54 @@ export class DataServiceService {
   ];
 
   constructor(private http: HttpClient,
-    private toastCtrl: ToastController, 
+    private toastCtrl: ToastController,
     private storage: Storage
-    ) {
+  ) {
     this.getData();
-    
+
     this.storage.get('TeamList')
       .then(registros => {
         this.teamList = registros || [];
       });
   }
 
-  getData(){
+  getData() {
     this.http.get('assets/information.json').subscribe(res => {
       this.information = res['items'];
 
       this.information[0].open = true;
-      console.log("Datos cargados");
-    });
-    
-  }
-
-  setWinnerPM(partida, match, player){
-    this.information[partida].children.forEach(p =>{
-      
+      console.log("Datos de partidas cargados");
     });
   }
 
-  setWinnerP(partida, player){
-    
+  getDataFromAPI(url){
+    return this.http.get(`${url}`);
+  }
+
+  getRanking(categoria){
+   /*
+    this.http.get('http://192.168.4.180:3000/scoreboard/categoria/' + categoria).subscribe(res => {
+      this.ranking = res;
+      this.ranking[0].open = true;
+      console.log(res);
+      console.log("Datos de ranking cargados");
+    });*/
+    this.http.get('assets/ranking.json').subscribe(res => {
+      this.ranking = res['datos'];
+
+      this.ranking[0].open = true;
+      console.log("Datos de ranking cargados");
+    });
+  }
+
+  setWinnerPM(partida, match, player) {
+    this.information[partida].children.forEach(p => {
+
+    });
+  }
+
+  setWinnerP(partida, player) {
+
   }
 
   ///Registro de equipos y jugadores
@@ -64,13 +84,13 @@ export class DataServiceService {
     this.presentToast("Team saved succesfully");
   }
 
-  updateTeam(index, newTeam){
-    this.teamList[index]=newTeam;
+  updateTeam(index, newTeam) {
+    this.teamList[index] = newTeam;
     this.storage.set('TeamList', this.teamList);
     this.presentToast("Team updated succesfully");
   }
 
-  deleteTeam(index){
+  deleteTeam(index) {
     this.teamList.splice(index, 1);
     this.storage.set('TeamList', this.teamList);
     this.presentToast("Team deleted succesfully");
@@ -82,5 +102,29 @@ export class DataServiceService {
       duration: 2000
     });
     toast.present();
+  }
+
+
+  //Obtener la posición del último jugador registrdo hasta el momento
+  getTheLastInPartida(partida) {
+    var last: number = 0;
+    this.information[partida].children.forEach(element => {
+      if (element.estado > last) {
+        last = element.estado;
+      }
+    });
+    return last;
+  }
+
+  getTheLastInMatch(partida, match) {
+    var last: number = 0;
+    this.information[partida].children.forEach(element => {
+      //falta recorrer los match y luego ya los participantes...
+
+      if (element.estado > last) {
+        last = element.estado;
+      }
+    }); return last;
+
   }
 }

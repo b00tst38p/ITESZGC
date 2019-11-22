@@ -10,7 +10,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class PartidaPage implements OnInit {
   automaticClose = false;
-  miPosicion = 0;
+  //miPosicion = 0;
 
   information: any[];
   constructor(private http: HttpClient, 

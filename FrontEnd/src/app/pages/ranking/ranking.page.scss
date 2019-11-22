@@ -1,0 +1,15 @@
+.botones{
+    margin: 20px 30px;
+    width: 70%;
+}
+
+.b{
+    margin: 10px 13px;
+    display: block;
+    transition: 3s;
+}
+
+.b:hover{
+    background: linear-gradient(to bottom, #fff, black);
+    color:black;
+}

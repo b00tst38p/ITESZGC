@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'register-team/:index', loadChildren: './pages/register-team/register-team.module#RegisterTeamPageModule' },
   { path: 'register-team/:index/:team', loadChildren: './pages/register-team/register-team.module#RegisterTeamPageModule' },
   { path: 'team-list', loadChildren: './pages/team-list/team-list.module#TeamListPageModule' },
+  { path: 'ranking', loadChildren: './pages/ranking/ranking.module#RankingPageModule' },
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { ModalController, ToastController, AlertController } from '@ionic/angula
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { RegisterPlayerPage } from '../register-player/register-player.page';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-team',
@@ -16,7 +17,8 @@ export class RegisterTeamPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public dataService: DataServiceService,
-    public alertCtrl: AlertController) { }
+    public alertCtrl: AlertController,
+    public http: HttpClient) { }
 
   mode = 0
   availableCateg = [];
@@ -55,6 +57,13 @@ export class RegisterTeamPage implements OnInit {
   parametro: string;
 
   ngOnInit() {
+    console.log("Hola1")  
+    /*this.http.post('http://192.168.4.182:3000/groups',{"idCategoria": "10kfbkj"}).subscribe(data => {
+    console.log("Hola2")  
+    console.log(data);
+    })*/;
+
+
     this.parametro = this.route.snapshot.paramMap.get('team');
     this.mode = parseInt(this.route.snapshot.paramMap.get('index'));
     if (this.parametro == null) {

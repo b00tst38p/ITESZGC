@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: '../test/test.module#TestPageModule'
       },
       {
+        path: 'ranking',
+        loadChildren: '../ranking/ranking.module#RankingPageModule'
+      },
+      {
         path: 'partida',
         loadChildren: '../partida/partida.module#PartidaPageModule'
       }

@@ -23,8 +23,6 @@ export class JugadorComponent implements OnInit {
     console.log("datos " + this.partida + this.match);
   }
 
- 
-
   setWinner(player) {
     if (this.match == null) {
       this.dataService.setWinnerP(this.partida, player);
@@ -32,6 +30,7 @@ export class JugadorComponent implements OnInit {
   }
 
   setPosition(){
+    //Revisamos de entre las partidas, aquella en la que se encuentra este jugador
     if(this.dataService.information[this.dataService.information[0].position].tipo == "Simple") {
       console.log("Primer Caso");
       this.product.estado = this.dataService.posicion+1;

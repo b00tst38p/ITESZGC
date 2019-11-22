@@ -1,0 +1,39 @@
+{
+    "datos":[
+        {
+            "nickname": "Vigo",
+            "equipo": "Reforma",
+            "puntos": "425"
+        },
+        {
+            "nickname": "Victorcreed",
+            "equipo": "Niños Heroes",
+            "puntos": "232"
+        },
+        {
+            "nickname": "Jo",
+            "equipo": "Reforma",
+            "puntos": "212"
+        },
+        {
+            "nickname": "C4t",
+            "equipo": "Reforma",
+            "puntos": "156"
+        },
+        {
+            "nickname": "Quetz",
+            "equipo": "Teva",
+            "puntos": "105"
+        },
+        {
+            "nickname": "Danny",
+            "equipo": "Reclusorio",
+            "puntos": "60"
+        },
+        {
+            "nickname": "Aaron",
+            "equipo": "Reclusorio",
+            "puntos": "10"
+        }
+    ]
+}
