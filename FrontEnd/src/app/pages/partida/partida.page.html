@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      Battle
+      {{title}}
     </ion-title>
     <!--<ion-buttons slot="end">
       <ion-button (click)="automaticClose = !automaticClose">
@@ -13,6 +13,23 @@
 </ion-header>
 
 <ion-content>
+  <ion-row>
+    <ion-avatar (click)="getGameData(1)" class="b">
+      <ion-img src="assets/img2/clasico.png"></ion-img>
+    </ion-avatar>
+
+    <ion-avatar (click)="getGameData(2)" class="b">
+      <ion-img src="assets/img2/shot.png"></ion-img>
+    </ion-avatar>
+
+    <ion-avatar (click)="getGameData(3)" class="b">
+      <ion-img src="assets/img2/lucha.png"></ion-img>
+    </ion-avatar>
+
+    <ion-avatar (click)="getGameData(4)" class="b">
+      <ion-img src="assets/img2/run.png"></ion-img>
+    </ion-avatar>
+  </ion-row>
   <ion-list *ngFor="let item of dataService.information; let i = index;" class="accordion-list" lines="none"
     detail="false" class="ion-no-padding">
 

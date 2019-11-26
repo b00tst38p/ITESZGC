@@ -11,16 +11,24 @@ import { HttpClient } from '@angular/common/http';
 export class RankingPage implements OnInit {
 
   ranking: any[];
+  title
   //@Input('position') position: any;
+  
   constructor(private http: HttpClient,
     private dataService: DataServiceService,
     private toastCtrl: ToastController
   ) {
-    dataService.getRanking(1);
+    this.loadCategoryData(1);
   }
 
   ngOnInit() {
     //this.dataService.getDataFromAPI()
+  }
+
+  loadCategoryData(category){
+    console.log("cargando datos de la categoria " + this.dataService.allCategories[category-1])
+    this.title = this.dataService.allCategories[category-1]
+    this.dataService.getRanking(category)
   }
 
   onclick() {

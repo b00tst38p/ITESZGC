@@ -11,13 +11,18 @@ import { ToastController } from '@ionic/angular';
 export class PartidaPage implements OnInit {
   automaticClose = false;
   //miPosicion = 0;
-
+  title
   information: any[];
   constructor(private http: HttpClient, 
     private dataService: DataServiceService, 
     private toastCtrl: ToastController,
   ) {
-    dataService.getData();
+    this.getGameData(1);
+  }
+
+  getGameData(category){
+    this.title = this.dataService.allCategories[category-1]
+    this.dataService.getGameData(category);
   }
 
   async estadoPartida() {

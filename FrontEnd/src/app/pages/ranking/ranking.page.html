@@ -1,26 +1,26 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Name Ranking</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-   <ion-row>
-   <ion-avatar (click)="onclick()" class="b">
-   <ion-img src="assets/img2/lucha.png"></ion-img>
-   </ion-avatar>
-   
-   <ion-avatar (click)="onclick()" class="b">
-   <ion-img src="assets/img2/clasico.png"></ion-img>
-   </ion-avatar>
+  <ion-row>
+    <ion-avatar (click)="loadCategoryData(1)" class="b">
+      <ion-img src="assets/img2/clasico.png"></ion-img>
+    </ion-avatar>
 
-   <ion-avatar (click)="onclick()" class="b">
-   <ion-img src="assets/img2/run.png"></ion-img>
-   </ion-avatar>
+    <ion-avatar (click)="loadCategoryData(2)" class="b">
+      <ion-img src="assets/img2/shot.png"></ion-img>
+    </ion-avatar>
 
-   <ion-avatar (click)="onclick()" class="b">
-   <ion-img src="assets/img2/shot.png"></ion-img>
-   </ion-avatar>
+    <ion-avatar (click)="loadCategoryData(3)" class="b">
+      <ion-img src="assets/img2/lucha.png"></ion-img>
+    </ion-avatar>
+
+    <ion-avatar (click)="loadCategoryData(4)" class="b">
+      <ion-img src="assets/img2/run.png"></ion-img>
+    </ion-avatar>
   </ion-row>
 
   <ion-card>
@@ -36,14 +36,16 @@
 
         <!--<ion-label id="columna">{{dataService.ranking[i].puntos}}</ion-label>-->
         <ion-buttons slot="end">
-          <ion-label><h1>{{datos.puntos}}</h1></ion-label>
+          <ion-label>
+            <h1>{{datos.puntos}}</h1>
+          </ion-label>
         </ion-buttons>
 
         <ion-icon name="trophy" size="large" slot="end" *ngIf="i=='0'" color="gold">
           {{ dataService.ranking[i].puntos }}</ion-icon>
-        <ion-icon name="trophy" size="large"  slot="end" *ngIf="i=='1'" color="silver">
+        <ion-icon name="trophy" size="large" slot="end" *ngIf="i=='1'" color="silver">
           {{ dataService.ranking[i].puntos }}</ion-icon>
-        <ion-icon name="trophy" size="large"  slot="end" *ngIf="i=='2'" color="bronze">
+        <ion-icon name="trophy" size="large" slot="end" *ngIf="i=='2'" color="bronze">
           {{ dataService.ranking[i].puntos }}</ion-icon>
 
       </ion-item>
@@ -54,23 +56,25 @@
 
   <ion-card>
 
-      <ion-list>
-  
-        <ion-item *ngFor="let datos of dataService.ranking | slice: 3; let i = index;">
-  
-            <ion-label>
-            <h2>{{ datos.nickname }}</h2>
-            <p>{{ datos.equipo }}</p>
+    <ion-list>
+
+      <ion-item *ngFor="let datos of dataService.ranking | slice: 3; let i = index;">
+
+        <ion-label>
+          <h2>{{ datos.nickname }}</h2>
+          <p>{{ datos.equipo }}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-label>
+            <h1>{{datos.puntos}}</h1>
           </ion-label>
-          <ion-buttons slot="end">
-            <ion-label><h1>{{datos.puntos}}</h1></ion-label>
-          </ion-buttons>
-          
-  
-        </ion-item>
-  
-      </ion-list>
-  
-    </ion-card>
+        </ion-buttons>
+
+
+      </ion-item>
+
+    </ion-list>
+
+  </ion-card>
 
 </ion-content>

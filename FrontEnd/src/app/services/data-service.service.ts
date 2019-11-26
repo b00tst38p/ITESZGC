@@ -30,7 +30,7 @@ export class DataServiceService {
     private toastCtrl: ToastController,
     private storage: Storage
   ) {
-    this.getData();
+    this.getGameData(1);
 
     this.storage.get('TeamList')
       .then(registros => {
@@ -38,17 +38,19 @@ export class DataServiceService {
       });
   }
 
-  getData() {
+  getGameData(category) {
+    console.log("Cargando datos de partida de categoria " + this.allCategories[category - 1])
     this.http.get('assets/information.json').subscribe(res => {
       this.information = res['items'];
-
       this.information[0].open = true;
       console.log("Datos de partidas cargados");
     });
   }
 
   getDataFromAPI(url){
-    return this.http.get(`${url}`);
+    return this.http.get(`${url}`).subscribe(res=>{
+      return res;
+    });
   }
 
   getRanking(categoria){
