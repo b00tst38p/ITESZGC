@@ -22,16 +22,11 @@ export class RankingPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.dataService.getDataFromAPI()
   }
 
   loadCategoryData(category){
-    console.log("cargando datos de la categoria " + this.dataService.allCategories[category-1])
+    //console.log("cargando datos de la categoria " + this.dataService.allCategories[category-1])
     this.title = this.dataService.allCategories[category-1]
     this.dataService.getRanking(category)
-  }
-
-  onclick() {
-    console.log("Something");
   }
 }

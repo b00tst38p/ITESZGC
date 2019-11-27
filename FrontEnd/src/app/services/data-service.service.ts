@@ -39,11 +39,11 @@ export class DataServiceService {
   }
 
   getGameData(category) {
-    console.log("Cargando datos de partida de categoria " + this.allCategories[category - 1])
+    //console.log("Cargando datos de partida de categoria " + this.allCategories[category - 1])
     this.http.get('assets/information.json').subscribe(res => {
       this.information = res['items'];
       this.information[0].open = true;
-      console.log("Datos de partidas cargados");
+      //console.log("Datos de partidas cargados");
     });
   }
 
@@ -54,19 +54,24 @@ export class DataServiceService {
   }
 
   getRanking(categoria){
-   /*
-    this.http.get('http://192.168.4.180:3000/scoreboard/categoria/' + categoria).subscribe(res => {
+   
+    this.http.get('http://192.168.4.22:3000/scoreboard/categoria/' + categoria).subscribe(res => {
+      if(res==null)
+        console.log("NULO")
       this.ranking = res;
       this.ranking[0].open = true;
       console.log(res);
       console.log("Datos de ranking cargados");
-    });*/
-    this.http.get('assets/ranking.json').subscribe(res => {
+    });
+    
+
+    
+    /*this.http.get('assets/ranking.json').subscribe(res => {
       this.ranking = res['datos'];
 
       this.ranking[0].open = true;
-      console.log("Datos de ranking cargados");
-    });
+      //console.log("Datos de ranking cargados");
+    });*/
   }
 
   setWinnerPM(partida, match, player) {

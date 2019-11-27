@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MainPage implements OnInit {
 
   constructor() { }
-
+  public mapTabEnabled: boolean = false;
   ngOnInit() {
   }
 

@@ -31,6 +31,10 @@ const routes: Routes = [
       {
         path: 'partida',
         loadChildren: '../partida/partida.module#PartidaPageModule'
+      },
+      {
+        path: 'final',
+        loadChildren: '../final/final.module#FinalPageModule'
       }
     ]
   }
