@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RankingPage implements OnInit {
 
-  ranking: any[];
+  ranking: any;
   title
   //@Input('position') position: any;
   
@@ -25,8 +25,10 @@ export class RankingPage implements OnInit {
   }
 
   loadCategoryData(category){
-    //console.log("cargando datos de la categoria " + this.dataService.allCategories[category-1])
     this.title = this.dataService.allCategories[category-1]
-    this.dataService.getRanking(category)
+    this.dataService.getDataFromAPI(this.dataService.serverIP + "/scoreboard/categoria/" + category).subscribe(data =>{
+      console.log(data);
+      this.ranking=data;
+    });
   }
 }

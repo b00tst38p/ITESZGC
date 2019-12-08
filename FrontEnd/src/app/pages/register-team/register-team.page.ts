@@ -54,10 +54,40 @@ export class RegisterTeamPage implements OnInit {
       ]
   }
 
+  teamTest = {
+    teamName: "Chingones",
+    members:
+      [
+        {
+          gamerTag: "boots",
+          name: "Aaron",
+          lastName: "Rocha",
+          category: 1
+        },
+        {
+          gamerTag: "Bruneiro",
+          name: "Bruno",
+          lastName: "Barboza",
+          category: 2
+        },
+        {
+          gamerTag: "Segundo",
+          name: "Ana",
+          lastName: "Segundo",
+          category: 3
+        },
+        {
+          gamerTag: "RickRichards",
+          name: "Ricardo",
+          lastName: "Garcia",
+          category: 4
+        }
+      ]
+  }
+
   parametro: string;
 
   ngOnInit() {
-    console.log("Hola1")  
     /*this.http.post('http://192.168.4.182:3000/groups',{"idCategoria": "10kfbkj"}).subscribe(data => {
     console.log("Hola2")  
     console.log(data);
@@ -78,22 +108,26 @@ export class RegisterTeamPage implements OnInit {
     this.router.navigateByUrl("main");
   }
 
-  submitRegister() {
+  submitRegister() {//teams/create/team
     var completos = true;
+    /*
     this.newTeam.members.forEach(element => {
       if (element.category == '') {
         this.presentToast('Team NOT Saved. Set category for alls players');
         completos = false;
       }
-    });
+    });*/
+
+    //Modo de guardado, si es registro nuevo o es una edición
     if (completos) {
       if (this.mode == -1)
-        this.dataService.addTeam(this.newTeam);
-      else
-        this.dataService.updateTeam(this.mode, this.newTeam);
+        //this.dataService.addTeam(this.newTeam);
+        this.dataService.sendDataToAPI(this.dataService.serverIP + "/teams/create/team", this.teamTest)
+      //else
+      //  this.dataService.updateTeam(this.mode, this.newTeam);
+      
 
-
-      this.router.navigateByUrl("tabs/team-list");
+      this.router.navigateByUrl("main/team-list");
     }
   }
 

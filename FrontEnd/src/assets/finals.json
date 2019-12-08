@@ -1,0 +1,60 @@
+{
+    "items": [
+        {
+            "grupo": "Grupo 1",
+            "lastPosition": 0,
+            "equipos": [
+                {
+                    "nombre": "Equipo: El malos chistes",
+                    "position": 0
+                },
+                {
+                    "nombre": "Equipo: Dinamitas",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "grupo": "Grupo 2",
+            "lastPosition": 0,
+            "equipos": [
+                {
+                    "nombre": "Equipo: El mamalos chistes",
+                    "position": 0
+                },
+                {
+                    "nombre": "Equipo: Dinamimitas",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "grupo": "Grupo 3",
+            "lastPosition": 0,
+            "equipos": [
+                {
+                    "nombre": "Equipo: El malos chichistes",
+                    "position": 0
+                },
+                {
+                    "nombre": "Equipo: Didinamitas",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "grupo": "Grupo 4",
+            "lastPosition": 0,
+            "equipos": [
+                {
+                    "nombre": "Equipo: El mamalos chichistes",
+                    "position": 0
+                },
+                {
+                    "nombre": "Equipo: Dinamitas",
+                    "position": 0
+                }
+            ]
+        }
+    ]
+}

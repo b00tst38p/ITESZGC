@@ -8,8 +8,10 @@ import { Storage } from "@ionic/storage";
   providedIn: 'root'
 })
 export class DataServiceService {
-
+  //serverIP = "http://192.168.0.32:3000"
+  serverIP = "http://localhost:3000"
   information: any[];
+  finals: any[];
   ranking: any;
   categoria: number;
   posicion: number = 0;
@@ -38,6 +40,18 @@ export class DataServiceService {
       });
   }
 
+  getFinalsData() {
+    //console.log("Cargando datos de partida de categoria " + this.allCategories[category - 1])
+    this.http.get('assets/finals.json').subscribe(res => {
+      this.finals = res['items'];
+      this.finals.forEach(element => {
+        element.open = true
+      });
+      //this.finals[0].open = true;
+      //console.log("Datos de partidas cargados");
+    });
+  }
+
   getGameData(category) {
     //console.log("Cargando datos de partida de categoria " + this.allCategories[category - 1])
     this.http.get('assets/information.json').subscribe(res => {
@@ -47,42 +61,42 @@ export class DataServiceService {
     });
   }
 
-  getDataFromAPI(url){
-    return this.http.get(`${url}`).subscribe(res=>{
-      return res;
+  getDataFromAPI(url) {
+    return this.http.get(`${url}`);
+  }
+
+  sendDataToAPI(url, data) {
+    return this.http.post(`${url}`, data).subscribe(data => {
+      console.log(data['_body']);
+    }, error => {
+      console.log(error);
     });
   }
 
-  getRanking(categoria){
-   
-    this.http.get('http://192.168.4.22:3000/scoreboard/categoria/' + categoria).subscribe(res => {
-      if(res==null)
-        console.log("NULO")
-      this.ranking = res;
-      this.ranking[0].open = true;
-      console.log(res);
-      console.log("Datos de ranking cargados");
-    });
-    
 
-    
-    /*this.http.get('assets/ranking.json').subscribe(res => {
-      this.ranking = res['datos'];
-
-      this.ranking[0].open = true;
-      //console.log("Datos de ranking cargados");
-    });*/
-  }
-
-  setWinnerPM(partida, match, player) {
+  setWinnerPM(partida, match, player) {/*
     this.information[partida].children.forEach(p => {
-
-    });
+      this.http.get('http://192.168.4.113:3000/scoreboard/categoria/' + categoria).subscribe(res => {
+        this.ranking = res;
+        this.ranking[0].open = true;
+        console.log(res);
+        console.log("Datos de ranking cargados");
+      });
+    });*/
   }
 
   setWinnerP(partida, player) {
 
   }
+  /*
+    sendTeam(team) {
+      this.http.post('http://192.168.4.113:3000/teams/create/team', team)
+        .subscribe(data => {
+          console.log(data['_body']);
+        }, error => {
+          console.log(error);
+        });
+    }*/
 
   ///Registro de equipos y jugadores
   addTeam(team) {
@@ -131,7 +145,7 @@ export class DataServiceService {
       if (element.estado > last) {
         last = element.estado;
       }
-    }); 
+    });
     return last;
 
   }

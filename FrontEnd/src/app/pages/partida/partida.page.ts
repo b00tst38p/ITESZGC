@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { ToastController } from '@ionic/angular';
 
@@ -12,8 +12,9 @@ export class PartidaPage implements OnInit {
   automaticClose = false;
   //miPosicion = 0;
   title
-  information: any[];
-  constructor(private http: HttpClient, 
+  //information: any[];
+  constructor(
+    //private http: HttpClient, 
     private dataService: DataServiceService, 
     private toastCtrl: ToastController,
   ) {

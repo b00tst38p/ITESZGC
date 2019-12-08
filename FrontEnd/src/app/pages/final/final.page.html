@@ -1,9 +1,65 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>final</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Final</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-list *ngFor="let grupo of dataService.finals; let i = index;" class="accordion-list" lines="none" detail="false"
+    class="ion-no-padding">
+
+    <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': grupo.open, 'section': !grupo.open}">
+
+      <ion-icon slot="start" name="arrow-forward" *ngIf="!grupo.open"></ion-icon>
+      <ion-icon slot="start" name="arrow-down" *ngIf="grupo.open"></ion-icon>
+
+      <ion-label>
+        {{ grupo.grupo }}
+      </ion-label>
+    </ion-item>
+
+    <div *ngIf="grupo.equipos && grupo.open">
+      <ion-list *ngFor="let team of grupo.equipos; let j = index;" lines="none" class="child-list">
+        <!--<ion-item tappable (click)="toggleItem(i, j)" *ngIf="team.jugadores"
+          [ngClass]="{'child-active': team.open, 'child': !team.open}">
+          <ion-icon slot="start" name="add" *ngIf="!team.open"></ion-icon>
+          <ion-icon slot="start" name="close" *ngIf="team.open"></ion-icon>
+          <ion-label>
+            {{ team.nombre }}
+          </ion-label>
+      </ion-item>-->
+        <ion-item>
+
+          <ion-label>
+            <h2>{{ team.nombre }}</h2>
+            <p>{{ "algo mas" }}</p>
+          </ion-label>
+
+          <ion-icon name="trophy" slot="end" *ngIf="team.position=='1'" color="gold">
+            {{ team.position }}</ion-icon>
+          <ion-icon name="trophy" slot="end" *ngIf="team.position=='2'" color="silver">
+            {{ team.position }}</ion-icon>
+          <ion-icon name="add" slot="end" *ngIf="team.position=='0'" (click)="setPosition()" color="primary"></ion-icon>
+
+          <!--  
+        <ion-buttons slot="end">
+          <ion-label>
+            <h1>{{datos.puntos}}</h1>
+          </ion-label>
+        </ion-buttons>
+      -->
+          <!--
+        <ion-icon name="trophy" size="large" slot="end" *ngIf="i=='0'" color="gold">
+          {{ ranking[i].puntos }}</ion-icon>
+        <ion-icon name="trophy" size="large" slot="end" *ngIf="i=='1'" color="silver">
+          {{ ranking[i].puntos }}</ion-icon>
+        <ion-icon name="trophy" size="large" slot="end" *ngIf="i=='2'" color="bronze">
+          {{ ranking[i].puntos }}</ion-icon>
+-->
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </ion-list>
 </ion-content>
