@@ -8,8 +8,8 @@ import { Storage } from "@ionic/storage";
   providedIn: 'root'
 })
 export class DataServiceService {
-  //serverIP = "http://192.168.0.32:3000"
-  serverIP = "http://localhost:3000"
+  serverIP = "http://25.47.107.122:3000" //Hamachi
+  //serverIP = "http://localhost:3000"
   //serverIP = "http://192.168.0.76:3000"
   information: any[];
   finals: any[];
@@ -125,7 +125,6 @@ export class DataServiceService {
   }
 
   setWinnerP(partida, player) {
-
   }
   /*
     sendTeam(team) {

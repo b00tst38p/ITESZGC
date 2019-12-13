@@ -32,50 +32,54 @@
   </ion-row>
 
   
-  <ion-list *ngFor="let item of dataService.information; let i = index;" class="accordion-list" lines="none"
+  <ion-list *ngFor="let grupo of information; let i = index;" class="accordion-list" lines="none"
     detail="false" class="ion-no-padding">
 
-    <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+    <!--Menu desplegable-->
+    <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': grupo.open, 'section': !grupo.open}">
       <ion-icon slot="end" name="trophy"></ion-icon>
-      <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
-      <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+      <ion-icon slot="start" name="arrow-forward" *ngIf="!grupo.open"></ion-icon>
+      <ion-icon slot="start" name="arrow-down" *ngIf="grupo.open"></ion-icon>
 
       <ion-label>
-        {{ item.partida }}
+        Partida {{ grupo.partida }}
       </ion-label>
     </ion-item>
+  
 
 
-    <div *ngIf="item.children && item.open">
-      <ion-list *ngFor="let match of item.children; let j = index;" lines="none" class="child-list">
-        <ion-item tappable (click)="toggleItem(i, j)" *ngIf="match.jugadores"
-          [ngClass]="{'child-active': match.open, 'child': !match.open}">
-          <ion-icon slot="start" name="add" *ngIf="!match.open"></ion-icon>
-          <ion-icon slot="start" name="close" *ngIf="match.open"></ion-icon>
-
-          <ion-label>
-            {{ match.name }}
-          </ion-label>
-        </ion-item>
-
-        <!--Lista de jugadores de partida no tipo match-->
-        <app-jugador [player]="match" [partida]="i" *ngIf="!match.jugadores"></app-jugador>
-
-        <!--Lista de jugadores de los match-->
-        <ion-list *ngIf="match.jugadores && match.open" class="product-list" lines="none">
-          <app-jugador [match]="j" [partida]="i" [player]="jugador" *ngFor="let jugador of match.jugadores">
-          </app-jugador>
-
+    <div *ngIf="grupo.jugadores && grupo.open">
+        <ion-list *ngFor="let jugador of grupo.jugadores; let j = index;" lines="none" class="child-list">
+          <!--<ion-item tappable (click)="toggleItem(i, j)" *ngIf="match.jugadores"
+            [ngClass]="{'child-active': match.open, 'child': !match.open}">
+            <ion-icon slot="start" name="add" *ngIf="!match.open"></ion-icon>
+            <ion-icon slot="start" name="close" *ngIf="match.open"></ion-icon>
+  
+            <ion-label>
+              {{ match.name }}
+            </ion-label>
+          </ion-item>-->
+  
+          <!--Lista de jugadores de partida no tipo match-->
+          <app-jugador [player]="jugador" [partida]="i" *ngIf="!jugador.jugadores"></app-jugador>
+  
+          <!--Lista de jugadores de los match-->
+          <ion-list *ngIf="jugador.jugadores && match.open" class="product-list" lines="none">
+            <app-jugador [match]="j" [partida]="i" [player]="jugador" *ngFor="let jugador of match.jugadores">
+            </app-jugador>
+  
+          </ion-list>
         </ion-list>
-      </ion-list>
+  
+  
+        <ion-item>
+          <ion-button slot="end" fill=outline (click)="reset(j,i)"> Reset </ion-button>
+          <ion-button slot="start" fill=outline (click)="estadoPartida()"> Confirmar </ion-button>
+        </ion-item>
+      </div>
 
+    
 
-      <ion-item>
-        <ion-button slot="end" fill=outline (click)="reset(j,i)"> Reset </ion-button>
-        <ion-button slot="start" fill=outline (click)="estadoPartida()"> Confirmar </ion-button>
-      </ion-item>
-    </div>
-
-    <p *ngIf="item.children.length == 0 && item.open" text-center>Sorry, nothing in here</p>
+    <!--<p *ngIf="item.children.length == 0 && item.open" text-center>Sorry, nothing in here</p>-->
   </ion-list>
 </ion-content>
