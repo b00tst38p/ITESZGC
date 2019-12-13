@@ -12,7 +12,7 @@
   </ion-fab>
 
   <ion-list>
-    <ion-item *ngFor="let item of dataService.teamList; let i = index" (click)="teamDetails(i)" detail>{{item.teamName}}</ion-item>
+    <ion-item *ngFor="let item of teamList; let i = index" (click)="teamDetails(i)" detail>{{item.nombre}}</ion-item>
   </ion-list>
   
 </ion-content>

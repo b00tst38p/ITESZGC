@@ -61,7 +61,6 @@
         <!--Lista de jugadores de partida no tipo match-->
         <app-jugador [player]="match" [partida]="i" *ngIf="!match.jugadores"></app-jugador>
 
-
         <!--Lista de jugadores de los match-->
         <ion-list *ngIf="match.jugadores && match.open" class="product-list" lines="none">
           <app-jugador [match]="j" [partida]="i" [player]="jugador" *ngFor="let jugador of match.jugadores">

@@ -26,7 +26,7 @@
   <ion-card>
 
     <ion-list>
-
+      <ion-label *ngIf="ranking == listaVacia"> Label</ion-label>
       <ion-item *ngFor="let datos of ranking | slice: 0:3; let i = index;">
 
         <ion-label>

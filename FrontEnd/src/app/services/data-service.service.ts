@@ -10,11 +10,44 @@ import { Storage } from "@ionic/storage";
 export class DataServiceService {
   //serverIP = "http://192.168.0.32:3000"
   serverIP = "http://localhost:3000"
+  //serverIP = "http://192.168.0.76:3000"
   information: any[];
   finals: any[];
   ranking: any;
   categoria: number;
   posicion: number = 0;
+
+  
+  teamTest = {
+    teamName: "Chingones",
+    members:
+      [
+        {
+          gamerTag: "boots",
+          name: "Aaron",
+          lastName: "Rocha",
+          category: 1
+        },
+        {
+          gamerTag: "Bruneiro",
+          name: "Bruno",
+          lastName: "Barboza",
+          category: 2
+        },
+        {
+          gamerTag: "Segundo",
+          name: "Ana",
+          lastName: "Segundo",
+          category: 3
+        },
+        {
+          gamerTag: "RickRichards",
+          name: "Ricardo",
+          lastName: "Garcia",
+          category: 4
+        }
+      ]
+  }
 
   //npm install @ionic-native/native-storage
   //ionic cordova plugin add cordova-sqlite-storage
@@ -25,8 +58,7 @@ export class DataServiceService {
     "Racer"
   ]
 
-  teamList = [
-  ];
+  teamList ;
 
   constructor(private http: HttpClient,
     private toastCtrl: ToastController,
@@ -34,10 +66,17 @@ export class DataServiceService {
   ) {
     this.getGameData(1);
 
+    //this.http.post("localhost:3000/teams/list",JSON.parse("{}")).subscribe(data =>{
+      ///////this.sendDataToAPI(this.serverIP + "/teams/list", this.teamTest)
+      //this.teamList = data || [];
+      //console.log(data)
+    //});
+    /*
     this.storage.get('TeamList')
       .then(registros => {
         this.teamList = registros || [];
       });
+      */
   }
 
   getFinalsData() {
@@ -62,17 +101,17 @@ export class DataServiceService {
   }
 
   getDataFromAPI(url) {
-    return this.http.get(`${url}`);
+    return this.http.get(`${url}`); 
   }
 
-  sendDataToAPI(url, data) {
-    return this.http.post(`${url}`, data).subscribe(data => {
-      console.log(data['_body']);
+  postDataToAPI(url, data) {
+    return this.http.post(`${url}`, data)/*.subscribe(data => {
+      console.log(data);
+      return data;
     }, error => {
       console.log(error);
-    });
+    });*/
   }
-
 
   setWinnerPM(partida, match, player) {/*
     this.information[partida].children.forEach(p => {

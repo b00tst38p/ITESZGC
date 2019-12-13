@@ -94,7 +94,8 @@ export class RegisterTeamPage implements OnInit {
     })*/;
 
 
-    this.parametro = this.route.snapshot.paramMap.get('team');
+
+    //Recibir e inicializar información necesaria para el registro nuevo o actualziación    this.parametro = this.route.snapshot.paramMap.get('team');
     this.mode = parseInt(this.route.snapshot.paramMap.get('index'));
     if (this.parametro == null) {
     }
@@ -103,29 +104,39 @@ export class RegisterTeamPage implements OnInit {
     }
   }
 
+
   deleteTeam() {
     this.dataService.deleteTeam(this.mode);
     this.router.navigateByUrl("main");
   }
 
+
+  //Al completar los datos del equipo se envia el registro a la base de datos
   submitRegister() {//teams/create/team
     var completos = true;
-    /*
+
+    //verificarque existan los datos de todos los jugadores
+    
     this.newTeam.members.forEach(element => {
       if (element.category == '') {
         this.presentToast('Team NOT Saved. Set category for alls players');
         completos = false;
       }
-    });*/
+    });
+    
 
     //Modo de guardado, si es registro nuevo o es una edición
     if (completos) {
-      if (this.mode == -1)
+
+      if (this.mode == -1)//nuevo registro
         //this.dataService.addTeam(this.newTeam);
-        this.dataService.sendDataToAPI(this.dataService.serverIP + "/teams/create/team", this.teamTest)
-      //else
+        this.dataService.postDataToAPI(this.dataService.serverIP + "/teams/create/team", this.teamTest).subscribe(data => {
+          console.log(data);
+        }, error => {
+          console.log(error);
+        });
+      //else//actualización del registro existente
       //  this.dataService.updateTeam(this.mode, this.newTeam);
-      
 
       this.router.navigateByUrl("main/team-list");
     }
@@ -135,6 +146,7 @@ export class RegisterTeamPage implements OnInit {
     return index;
   }
 
+  //Categoras disponibles para elegir por el participante
   availableCategories(additionalCateg) {
     this.availableCateg = [];
     //toma el primer elemento de las categorias
@@ -156,6 +168,7 @@ export class RegisterTeamPage implements OnInit {
     });
   }
 
+  //obtener detalles del jugador para actualizarlo
   async getPlayerDetails(i) {
     this.availableCategories(this.newTeam.members[i].category);
     const modal = await this.modalCtrl.create({
@@ -197,8 +210,6 @@ export class RegisterTeamPage implements OnInit {
           role: 'cancel'
         }]
     });
-
     await alert.present();
   }
-
 }
