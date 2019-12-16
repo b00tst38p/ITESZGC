@@ -3,37 +3,22 @@
     <ion-title>
       {{title}}
     </ion-title>
-    <!--<ion-buttons slot="end">
-      <ion-button (click)="automaticClose = !automaticClose">
-        <ion-icon slot="icon-only" name="close" *ngIf="automaticClose"></ion-icon>
-        <ion-icon slot="icon-only" name="resize" *ngIf="!automaticClose"></ion-icon>
-      </ion-button>
-    </ion-buttons>-->
   </ion-toolbar>
+  <ion-row>
+    <ion-col size=3 *ngFor="let e of dataService.menu">
+      <ion-avatar (click)="getGameData(e.id)" class="b">
+        <ion-img [src]=e.src></ion-img>
+      </ion-avatar>
+    </ion-col>
+  </ion-row>
 </ion-header>
 
 <ion-content>
-  <ion-row>
-    <ion-avatar (click)="getGameData(1)" class="b">
-      <ion-img src="assets/img2/clasico.png"></ion-img>
-    </ion-avatar>
 
-    <ion-avatar (click)="getGameData(2)" class="b">
-      <ion-img src="assets/img2/shot.png"></ion-img>
-    </ion-avatar>
 
-    <ion-avatar (click)="getGameData(3)" class="b">
-      <ion-img src="assets/img2/lucha.png"></ion-img>
-    </ion-avatar>
 
-    <ion-avatar (click)="getGameData(4)" class="b">
-      <ion-img src="assets/img2/run.png"></ion-img>
-    </ion-avatar>
-  </ion-row>
-
-  
-  <ion-list *ngFor="let grupo of information; let i = index;" class="accordion-list" lines="none"
-    detail="false" class="ion-no-padding">
+  <ion-list *ngFor="let grupo of information; let i = index;" class="accordion-list" lines="none" detail="false"
+    class="ion-no-padding">
 
     <!--Menu desplegable-->
     <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': grupo.open, 'section': !grupo.open}">
@@ -45,40 +30,87 @@
         Partida {{ grupo.partida }}
       </ion-label>
     </ion-item>
-  
 
+    <!--Jugadores individuales que no estan en matches-->
+    <ion-card *ngIf="grupo.jugadores && grupo.open && (grupo.tipo == 2 || grupo.tipo == 4)">
+      <ion-list *ngFor="let player of grupo.jugadores; let j = index;" lines="none" class="child-list">
+        <!--Lista de jugadores de partida no tipo match-->
+        <!--<app-jugador [player]="jugador" [partida]="i" *ngIf="!jugador.jugadores"></app-jugador>-->
 
-    <div *ngIf="grupo.jugadores && grupo.open">
-        <ion-list *ngFor="let jugador of grupo.jugadores; let j = index;" lines="none" class="child-list">
-          <!--<ion-item tappable (click)="toggleItem(i, j)" *ngIf="match.jugadores"
-            [ngClass]="{'child-active': match.open, 'child': !match.open}">
-            <ion-icon slot="start" name="add" *ngIf="!match.open"></ion-icon>
-            <ion-icon slot="start" name="close" *ngIf="match.open"></ion-icon>
-  
-            <ion-label>
-              {{ match.name }}
-            </ion-label>
-          </ion-item>-->
-  
-          <!--Lista de jugadores de partida no tipo match-->
-          <app-jugador [player]="jugador" [partida]="i" *ngIf="!jugador.jugadores"></app-jugador>
-  
-          <!--Lista de jugadores de los match-->
-          <ion-list *ngIf="jugador.jugadores && match.open" class="product-list" lines="none">
-            <app-jugador [match]="j" [partida]="i" [player]="jugador" *ngFor="let jugador of match.jugadores">
-            </app-jugador>
-  
-          </ion-list>
-        </ion-list>
-  
-  
-        <ion-item>
-          <ion-button slot="end" fill=outline (click)="reset(j,i)"> Reset </ion-button>
-          <ion-button slot="start" fill=outline (click)="estadoPartida()"> Confirmar </ion-button>
+        <!--------------------------------------->
+        <ion-item class="child-item" class="ion-text-wrap" detail="false" lines="none">
+          <ion-label>
+            <h3>{{ player.name }}</h3>
+            <p color="medium">{{ player.equipo }}</p>
+          </ion-label>
+          <ion-label id="columna">{{player.position}}</ion-label>
+          <ion-icon name="trophy" slot="end" *ngIf="player.position=='1'" color="gold">
+            {{ player.position }}</ion-icon>
+          <ion-icon name="trophy" slot="end" *ngIf="player.position=='2'" color="silver">
+            {{ player.position }}</ion-icon>
+          <ion-icon name="trophy" slot="end" *ngIf="player.position=='3'" color="bronze">
+            {{ player.position }}</ion-icon>
+          <ion-icon name="add" slot="end" *ngIf="player.position=='0'" (click)="setPosition(player, i, 0)" color="primary">
+          </ion-icon>
         </ion-item>
-      </div>
+        <!--------------------------------------->
+
+      </ion-list>
+      <ion-item>
+        <ion-button slot="end" fill=outline (click)="reset(i)"> Reset </ion-button>
+        <ion-button slot="start" fill=outline (click)="enviarResultados(i, grupo.partida)"> Confirmar </ion-button>
+      </ion-item>
+    </ion-card>
+
+
+    <!--Matches-->
+    <ion-card *ngIf="grupo.jugadores && grupo.open && (grupo.tipo == 1 || grupo.tipo == 3)">
+      <ion-list *ngFor="let match of grupo.jugadores; let j = index;" lines="none" class="child-list">
+
+        <!--lista de matches-->
+        <ion-item tappable (click)="toggleItem(i, j)" [ngClass]="{'child-active': match.open, 'child': !match.open}">
+          <ion-icon slot="start" name="add" *ngIf="!match.open"></ion-icon>
+          <ion-icon slot="start" name="close" *ngIf="match.open"></ion-icon>
+
+          <ion-label>
+            {{ match.listaJugadores[0].name }} vs {{ match.listaJugadores[1].name }}
+          </ion-label>
+        </ion-item>
+
+        <!--Cada jugador del match-->
+        <ion-list *ngIf="match.listaJugadores && match.open" class="product-list" lines="none">
+          <!--<app-jugador [match]="j" [partida]="i" [player]="individuo" *ngFor="let individuo of match.listaJugadores"></app-jugador>-->
+
+          <!--------------------------------------->
+          <ion-item class="child-item" class="ion-text-wrap" detail="false" lines="none" *ngFor="let player of match.listaJugadores">
+            <ion-label>
+              <h3>{{ player.name }}</h3>
+              <p color="medium">{{ player.equipo }}</p>
+            </ion-label>
+            <ion-label id="columna">{{player.position}}</ion-label>
+            <ion-icon name="trophy" slot="end" *ngIf="player.position=='1'" color="gold">
+              {{ player.position }}</ion-icon>
+            <ion-icon name="trophy" slot="end" *ngIf="player.position=='2'" color="silver">
+              {{ player.position }}</ion-icon>
+            <ion-icon name="trophy" slot="end" *ngIf="player.position=='3'" color="bronze">
+              {{ player.position }}</ion-icon>
+            <ion-icon name="add" slot="end" *ngIf="player.position=='0'" (click)="setPosition(player, i, j)" color="primary">
+            </ion-icon>
+          </ion-item>
+          <!--------------------------------------->
+          
+        </ion-list>
+      </ion-list>
+      <ion-item>
+        <ion-button slot="end" fill=outline (click)="reset(i)"> Reset </ion-button>
+        <ion-button slot="start" fill=outline (click)="enviarResultados(i, grupo.partida)"> Confirmar </ion-button>
+      </ion-item>
+    </ion-card>
+
 
     
+
+
 
     <!--<p *ngIf="item.children.length == 0 && item.open" text-center>Sorry, nothing in here</p>-->
   </ion-list>

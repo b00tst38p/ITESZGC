@@ -24,24 +24,23 @@ export class TeamListPage implements OnInit {
 
     try {
       this.loading = await this.loadingCrtl.create({
-        duration: 5000,
-        message: "Please wait..."
+        //duration: 5000,
+        message: "Please wait...",
+        backdropDismiss: true
       });
 
       await this.loading.present();
-
+    
       this.dataService.postDataToAPI(this.dataService.serverIP + "/teams/list", "").subscribe(data => {
         this.teamList = data;
         //console.log(this.teamList)
-        this.loadingCrtl.dismiss();
+        this.loadingCrtl.dismiss()
       });
     }
     catch (e) {
       console.log("Error: " + e);
       return null;
     }
-
-
   }
 
   ngOnInit() {

@@ -63,10 +63,10 @@ ion-content{
 .b{
     margin: 10px 13px;
     display: block;
-    transition: 3s;
+    transition: 0.5s;
 }
 
 .b:hover{
-    background: linear-gradient(to bottom, #fff, black);
+    background: linear-gradient(to bottom, #fff, rgb(0, 0, 0));
     color:black;
 }

@@ -16,6 +16,24 @@ export class DataServiceService {
   ranking: any;
   categoria: number;
   posicion: number = 0;
+  menu = [
+    {
+      id: 1,
+      src: "assets/img2/clasico.png"
+    },
+    {
+      id: 2,
+      src: "assets/img2/shot.png"
+    },
+    {
+      id: 3,
+      src: "assets/img2/lucha.png"
+    },
+    {
+      id: 4,
+      src: "assets/img2/run.png"
+    },
+  ]
 
   
   teamTest = {

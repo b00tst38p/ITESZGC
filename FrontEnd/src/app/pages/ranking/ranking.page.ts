@@ -32,9 +32,9 @@ export class RankingPage implements OnInit {
 
     try {
       this.loading = await this.loadingCrtl.create({
-        duration: 5000,
-        message: "Please wait..."
-        
+        //duration: 5000,
+        message: "Please wait...",
+        backdropDismiss: true
       });
     await this.loading.present();
     this.dataService.getDataFromAPI(this.dataService.serverIP + "/scoreboard/categoria/" + category).subscribe(data =>{
